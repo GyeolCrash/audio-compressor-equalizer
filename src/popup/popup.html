@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audio Manipulator: Compressor, EQ, Pitch</title>
+    <link rel="stylesheet" href="./popup.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Audio Manipulator</h1>
+            <div class="tab-nav" data-tab-group="main">
+                <button class="tab-btn active" data-target="audioTab">Audio</button>
+                <button class="tab-btn" data-target="settingsTab">Settings</button>
+            </div>
+        </header>
+
+        <div id="audioTab" class="tab-content active" data-tab-group="main">
+            <div class="sub-tab-nav" data-tab-group="audio">
+                <button class="tab-btn active" data-target="eqPanel">EQ</button>
+                <button class="tab-btn" data-target="compressorPanel">Compressor</button>
+            </div>
+
+            <div id="eqPanel" class="tab-content active" data-tab-group="audio">
+            <div class="graph-section">
+                <div class="graph-instructions">
+                    <span>Double click: New | Left click: Select | Right click: Delete</span>
+                </div>
+                <canvas id="eqGraph" width="800" height="250"></canvas>
+            </div>
+
+            <div class="master-control">
+                <label>Master Gain</label>
+                <input type="range" id="masterGain" min="-12" max="12" value="0" step="0.1" />
+                <span id="masterGainValue">0.0 dB</span>
+            </div>
+
+            <div class="controls-grid">
+                <div class="node-list-section">
+                    <div class="section-title">Node List</div>
+                    <div id="nodeList" class="node-list"></div>
+                    <div class="node-actions">
+                        <button id="deleteButton" class="btn btn-danger">Delete</button>
+                        <button id="resetButton" class="btn btn-secondary">Reset</button>
+                    </div>
+                </div>
+
+                <div class="parameter-section">
+                    <div id="controlPanel" class="control-panel">
+                        <p class="placeholder-text">Select a node</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div id="compressorPanel" class="tab-content" data-tab-group="audio">
+                <div class="compressor-top">
+                    <div class="compressor-header">
+                        <label class="toggle-row">
+                            <input type="checkbox" id="compressorEnabled" />
+                            <span>Compressor ON</span>
+                        </label>
+                        <button id="compressorReset" class="btn btn-secondary" style="padding: 4px 12px;">Reset</button>
+                    </div>
+                    <div class="compressor-canvas-row">
+                        <div class="compressor-canvas-block">
+                            <div class="section-title">Transfer Curve</div>
+                            <canvas id="compressorCurve" width="380" height="250"></canvas>
+                        </div>
+                        <div class="compressor-canvas-block">
+                            <div class="section-title">Gain Reduction</div>
+                            <canvas id="compressorMeter" width="380" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="compressor-controls">
+                    <div class="comp-slider-row">
+                        <label>Threshold</label>
+                        <input type="range" id="comp_threshold" />
+                        <span id="comp_threshold_val">-24 dB</span>
+                    </div>
+                    <div class="comp-slider-row">
+                        <label>Ratio</label>
+                        <input type="range" id="comp_ratio" />
+                        <span id="comp_ratio_val">12.0 : 1</span>
+                    </div>
+                    <div class="comp-slider-row">
+                        <label>Knee</label>
+                        <input type="range" id="comp_knee" />
+                        <span id="comp_knee_val">30 dB</span>
+                    </div>
+                    <div class="comp-slider-row">
+                        <label>Attack</label>
+                        <input type="range" id="comp_attack" />
+                        <span id="comp_attack_val">3.0 ms</span>
+                    </div>
+                    <div class="comp-slider-row">
+                        <label>Release</label>
+                        <input type="range" id="comp_release" />
+                        <span id="comp_release_val">250 ms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="settingsTab" class="tab-content" data-tab-group="main">
+            <div class="settings-section">
+                <div class="section-title">General Settings</div>
+                <div class="settings-group">
+                    <label>Theme</label>
+                    <div class="button-group" id="themeButtons">
+                        <button class="btn-toggle active" data-theme-val="system">System</button>
+                        <button class="btn-toggle" data-theme-val="light">Light</button>
+                        <button class="btn-toggle" data-theme-val="dark">Dark</button>
+                    </div>
+                </div>
+                <div class="settings-group" style="margin-top: 8px;">
+                    <label>View Mode</label>
+                    <div class="button-group" id="viewModeButtons">
+                        <button class="btn-toggle active" data-mode-val="popup">Popup</button>
+                        <button class="btn-toggle" data-mode-val="sidePanel">Side Panel</button>
+                        <button class="btn-toggle" data-mode-val="newTab">New Tab</button>
+                    </div>
+                </div>
+                <div class="settings-group" style="margin-top: 8px;">
+                    <label>Troubleshoot</label>
+                    <button id="resetBtn" class="btn btn-danger"
+                        style="flex: 0 0 auto; padding: 4px 16px;">Reset</button>
+                </div>
+                <div style="display: flex; justify-content: flex-end; margin-top: 16px;">
+                    <button id="applySettingsBtn" class="btn active"
+                        style="padding: 6px 20px; background-color: #2c4c2c; color: white;">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./popup.ts"></script>
+</body>
+
+</html>

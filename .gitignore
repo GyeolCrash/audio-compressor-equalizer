@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+package-lock.json
+npm-debug.log
+
+# Build output
+dist
+build
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Vite / Build
+out/
+*.tsbuildinfo
+vite.config.ts.timestamp-*
