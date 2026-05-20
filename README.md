@@ -1,4 +1,4 @@
-# Audio Manipulator - Chrome Extension
+# Audio Compressor & Equalizer - Chrome Extension
 
 
 ## Tech Stack
@@ -38,7 +38,7 @@
 ## Directory
 
 ```
-equalizer-extension/
+audio-compressor-equalizer/
 ├── client/
 │   ├── src/
 │   │   ├── manifest.json              # Manifest V3
@@ -67,7 +67,7 @@ npm --version   # 10.x than latest
 ### 2. Install Depedencies
 
 ```bash
-cd \your_directory\equalizer-extension
+cd \your_directory\audio-compressor-equalizer
 npm install
 ```
 
@@ -106,7 +106,7 @@ output: {
   {
     "document": "src/offscreen.html",
     "matches": ["<all_urls>"],
-    "reasons": ["AUDIO_PLAYBACK"]  // Explictly 
+    "reasons": ["AUDIO_PLAYBACK"]
   }
 ]
 ```
